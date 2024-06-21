@@ -1,0 +1,12 @@
+{{ ranking_dict.introduction }}
+
+{% for stock in ranking_dict.stocks %}
+# {{ stock.ticker }}: {{ stock.name }}
+
+Current price: {{ stock.current_price }}
+Price target: {{ stock.price_target }}
+
+{{ stock.description }}
+{% endfor %}
+
+{{ ranking_dict.conclusion }}
