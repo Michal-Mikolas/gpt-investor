@@ -1,12 +1,26 @@
 {{ ranking_dict.introduction }}
 
+
+# Overview
+
+| Rank | Ticker | Name | Current price | Price target | Description |
+|------|--------|------|---------------|--------------|-------------|
+{% for stock in ranking_dict.stocks %}| {{ stock.rank }} | {{ stock.ticker }} | {{ stock.name }} | {{ stock.current_price }} | {{ stock.price_target }} | {{ stock.description }} |
+{% endfor %}
+
+
+# Details
+
 {% for stock in ranking_dict.stocks %}
-# {{ stock.ticker }}: {{ stock.name }}
+## {{ stock.ticker }}: {{ stock.name }}
 
 Current price: {{ stock.current_price }}
 Price target: {{ stock.price_target }}
 
 {{ stock.description }}
 {% endfor %}
+
+
+# Conslusion
 
 {{ ranking_dict.conclusion }}
