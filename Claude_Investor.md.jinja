@@ -1,23 +1,45 @@
+# Comparison of {{ ranking_dict.stocks|length }} stocks from {{ industry }} industry
+
+*Generated {{ now.strftime("%d.%m.%Y %H:%M") }}.*
+
 {{ ranking_dict.introduction }}
 
 
 # Overview
 
-| Rank | Ticker | Name | Current price | Price target | Description |
-|------|--------|------|---------------|--------------|-------------|
-{% for stock in ranking_dict.stocks %}| {{ stock.rank }} | {{ stock.ticker }} | {{ stock.name }} | {{ stock.current_price }} | {{ stock.price_target }} | {{ stock.description }} |
+| Rank | Ticker | Current price | Price target | Description |
+|------|--------|---------------|--------------|-------------|
+{% for stock in ranking_dict.stocks %}| {{ stock.rank }} | {{ stock.ticker }} | {{ stock.current_price }} | {{ stock.price_target }} | {{ stock.description }} |
 {% endfor %}
 
 
 # Details
 
 {% for stock in ranking_dict.stocks %}
-## {{ stock.ticker }}: {{ stock.name }}
 
-Current price: {{ stock.current_price }}
-Price target: {{ stock.price_target }}
+## {{ stock.name }} ({{ stock.ticker }})
 
-{{ stock.description }}
+**Current price**: {{ stock.current_price }}  
+**Price target**: {{ stock.price_target }}
+
+{{ final_analyses[stock.ticker] }}
+
+{#
+### Sentiment Analysis
+
+{{ sentiment_analyses[stock.ticker] }}
+
+### Industry Analysis
+
+{{ industry_analyses[stock.ticker] }}
+
+### Analyst Ratings
+
+```
+{{ analyst_ratings[stock.ticker] }}
+```
+#}
+
 {% endfor %}
 
 
